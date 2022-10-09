@@ -1,3 +1,2 @@
-# WVU_CYBR_520_Group_1
-
-# https://github.com/mjahmad/CYBR520_Fall2022.git
+# CYBR520_Fall2022
+The source code repository for CYBR 520 of Fall 2022 at WVU.
