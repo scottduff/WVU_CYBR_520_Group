@@ -30,5 +30,6 @@ svm.spambaseModel <- train(type~., data = spambasetrain, method = "svmRadial", t
 
 svm.cicids2017Model <- train(Label~., data = cicids2017train, method = "svmRadial", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
 
-
-
+# This is the error Im getting
+#Error in na.fail.default(list(Label = c("BENIGN", "BENIGN", "BENIGN",  : 
+#                                          missing values in object
