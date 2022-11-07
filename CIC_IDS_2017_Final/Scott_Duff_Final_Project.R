@@ -6,13 +6,22 @@ set.seed(4242)
 cicids2017 <- read.csv("C:\\Users\\duffa\\OneDrive\\Documents\\GitHub\\WVU_CYBR_520_Group_1\\CIC_IDS_2017_Final\\MachineLearningCVE\\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv", sep = ",")
 cicids2017$x <- NULL
 
-i <- (colSums(cicids2017, na.rm=T) != 0)
-cicids2017_Reduced <- cicids2017[, i]
+# Selects Columns that total Zero.
+only_zeros <- function(x) {
+  if(class(x) %in% c("integer", "numeric")) {
+    all(x == 0, na.rm = TRUE) 
+  } else { 
+    FALSE
+  }
+}
 
+# Removes columns that total Zero
+cicids2017RemoveZeroCol <- cicids2017[ , !sapply(cicids2017, only_zeros)]
 
-
-
-
+# The results of this command
+# table(cicids2017RemoveZeroCol$Label)
+# BENIGN   DDoS 
+# 97718    128027 
 
 
 #cicids2017trainIndex <- createDataPartition(cicids2017$Label, p = 0.70, list = FALSE)
