@@ -35,3 +35,9 @@ datasetNoZeroColumns <- dataset[ , !sapply(dataset, only_zeros)]
 I will be working on using stratified sampling. To reduce it further.
 
 Unless I or someone else finds another method.
+
+
+Please select sometype of model /classifier to test with.
+Work on graphs and data for that one.
+
+I am using svm, svmRadial and will be doing Accuracy, Precision, and Recall.
