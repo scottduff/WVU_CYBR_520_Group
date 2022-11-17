@@ -18,6 +18,9 @@ only_zeros <- function(x) {
 # Removes columns that total Zero
 cicids2017RemoveZeroCol <- cicids2017[ , !sapply(cicids2017, only_zeros)]
 
+write.csv(cicids2017RemoveZeroCol,"C:\\Users\\duffa\\Documents\\export.csv", row.names = FALSE)
+
+
 # The results of this command
 # table(cicids2017RemoveZeroCol$Label)
 # BENIGN   DDoS 
