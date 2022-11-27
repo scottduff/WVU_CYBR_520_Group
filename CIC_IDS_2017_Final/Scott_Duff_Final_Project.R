@@ -3,8 +3,8 @@ library(e1071)
 
 set.seed(4242)
 
-cicids2017 <- read.csv("C:\\Users\\duffa\\OneDrive\\Documents\\GitHub\\WVU_CYBR_520_Group_1\\CIC_IDS_2017_Final\\MachineLearningCVE\\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv", sep = ",")
-cicids2017$x <- NULL
+dataset <- read.csv("C:\\Users\\duffa\\OneDrive\\Documents\\GitHub\\WVU_CYBR_520_Group_1\\CIC_IDS_2017_Final\\MachineLearningCVE\\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv", sep = ",")
+dataset$x <- NULL
 
 # Selects Columns that total Zero.
 only_zeros <- function(x) {
@@ -16,23 +16,33 @@ only_zeros <- function(x) {
 }
 
 # Removes columns that total Zero
-cicids2017RemoveZeroCol <- cicids2017[ , !sapply(cicids2017, only_zeros)]
+dataset_nozero <- dataset[ , !sapply(dataset, only_zeros)]
+dataset_backup <- dataset[ , !sapply(dataset, only_zeros)]
 
-write.csv(cicids2017RemoveZeroCol,"C:\\Users\\duffa\\Documents\\export.csv", row.names = FALSE)
+#write.csv(dataset_nozero,"C:\\Users\\duffa\\Documents\\export.csv", row.names = FALSE)
 
+dataset_nozero[dataset_nozero =='BENIGN'] <- as.numeric(0)              
+dataset_nozero[dataset_nozero =='DDoS'] <- as.numeric(1)                 
+dataset_nozero$Label = as.numeric(dataset_nozero$Label)                    
+str(dataset_nozero)
 
-# The results of this command
-# table(cicids2017RemoveZeroCol$Label)
-# BENIGN   DDoS 
-# 97718    128027 
+correlationMatrix <- cor(dataset_nozero[,1:69])
 
+print(correlationMatrix)
+print(correlationMatrix[69,])
 
-#cicids2017trainIndex <- createDataPartition(cicids2017$Label, p = 0.70, list = FALSE)
-#cicids2017train <- cicids2017[ cicids2017trainIndex, ]
-#cicids2017test <- cicids2017[-cicids2017trainIndex, ]
+visCorMatrix1 <- corrplot(cor(dataset_nozero))
+visCorMatrix2 <-ggcorrplot(cor(dataset_nozero))
+visCorMatrix2
 
-#trainCtrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
+highlyCorrelated <- findCorrelation(correlationMatrix, cutoff=0.5, 
+                                    verbose = FALSE, names = TRUE )
 
+print(highlyCorrelated)
 
-#svm.cicids2017Model <- train(Label~., data = cicids2017train, method = "svmRadial", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
+set.seed(4242)
 
+control <- trainControl(method="repeatedcv", number=10, repeats=3)
+
+model <- train(as.factor(Label)~., data=dataset_nozero, method="lvq", 
+               preProcess="scale", trControl=control)

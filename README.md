@@ -32,12 +32,10 @@ only_zeros <- function(x) {
 
 datasetNoZeroColumns <- dataset[ , !sapply(dataset, only_zeros)]
 
-I will be working on using stratified sampling. To reduce it further.
+LVQ Model Finished
 
-Unless I or someone else finds another method.
+206 Hours, run time
 
+I have uploaded my environment file.
 
-Please select sometype of model /classifier to test with.
-Work on graphs and data for that one.
-
-I am using svm, svmRadial and will be doing Accuracy, Precision, and Recall.
+You can load the environment file manually in R Studio to avoid running it yourself.
