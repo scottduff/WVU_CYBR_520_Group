@@ -46,3 +46,22 @@ control <- trainControl(method="repeatedcv", number=10, repeats=3)
 
 model <- train(as.factor(Label)~., data=dataset_nozero, method="lvq", 
                preProcess="scale", trControl=control)
+
+importance <- varImp(model, scale=FALSE)
+
+print(importance)
+
+importantfeatures10 <- c("Bwd.Packet.Length.Mean", "Avg.Bwd.Segment.Size", 
+                         "Bwd.Packet.Length.Max", "Bwd.Packet.Length.Std", 
+                         "Destination.Port", "URG.Flag.Count", 
+                         "Packet.Length.Mean", "Average.Packet.Size", 
+                         "Packet.Length.Std", "Min.Packet.Length", "Label")
+
+datasetfeatures10 <- dataset_backup[importantfeatures10]
+
+trainIndex <- createDataPartition(datasetfeatures10$Label, p = 0.70, list = FALSE)
+train <- datasetfeatures10[ trainIndex, ]
+test <- datasetfeatures10[-trainIndex, ]
+
+svm.model <- train(type~., data = train, method = "svmRadial", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
+
