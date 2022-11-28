@@ -27,7 +27,7 @@ You can copy 2_1_Default_Code.R and 2_2_Default_Environment.RData. To start trai
 2_2_Default_Environment.RData
 
     This is an enivornment created from 2_1_Default_Code.R.
-    It really isn't needed this environment only takes seconds to finish. It is here to be consistant.
+    This isn't needed the environment only takes seconds to finish. It is here to be consistant.
 
 3_1_SVM_Code.R
 
