@@ -26,7 +26,7 @@ dataset_nozero[dataset_nozero =='DDoS'] <- as.numeric(1)
 dataset_nozero$Label = as.numeric(dataset_nozero$Label)                    
 str(dataset_nozero)
 
-correlationMatrix <- cor(dataset_nozero[,1:69])
+#correlationMatrix <- cor(dataset_nozero[,1:69])
 
 print(correlationMatrix)
 print(correlationMatrix[69,])
@@ -44,10 +44,10 @@ set.seed(4242)
 
 control <- trainControl(method="repeatedcv", number=10, repeats=3)
 
-model <- train(as.factor(Label)~., data=dataset_nozero, method="lvq", 
-               preProcess="scale", trControl=control)
+#model <- train(as.factor(Label)~., data=dataset_nozero, method="lvq", 
+#               preProcess="scale", trControl=control)
 
-importance <- varImp(model, scale=FALSE)
+#importance <- varImp(model, scale=FALSE)
 
 print(importance)
 
@@ -59,9 +59,21 @@ importantfeatures10 <- c("Bwd.Packet.Length.Mean", "Avg.Bwd.Segment.Size",
 
 datasetfeatures10 <- dataset_backup[importantfeatures10]
 
+# Above this is the default configuration. If you load the environment file you will not have to run these again.
+# Below this point is SVM
+
 trainIndex <- createDataPartition(datasetfeatures10$Label, p = 0.70, list = FALSE)
 train <- datasetfeatures10[ trainIndex, ]
 test <- datasetfeatures10[-trainIndex, ]
 
-svm.model <- train(type~., data = train, method = "svmRadial", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
+trainCtrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
 
+#svm.model <- train(Label~., data = train, method = "svmRadial", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
+
+svm.model$times
+svm.model$results
+
+svm.predict <- predict(svm.model, test)
+modelpredict <- confusionMatrix(svm.predict, as.factor(test$Label), mode = "prec_recall")
+
+modelpredict
