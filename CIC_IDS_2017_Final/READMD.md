@@ -7,6 +7,7 @@ Learn to save and load your environments. If it takes 8 hours to run a command a
 You have to use 8 more hours to do it again.
 
 You can copy 2_1_Default_Code.R and 2_2_Default_Environment.RData. To start training your models.
+Copy and Rename the two files based on your portion of the project.
 
 1_1_Feature_Selection_Code.R
 
