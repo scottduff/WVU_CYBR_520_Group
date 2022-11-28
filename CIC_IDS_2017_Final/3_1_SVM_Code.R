@@ -35,7 +35,7 @@ test <- datasetfeatures10[-trainIndex, ]
 
 trainCtrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
 
-svm.model <- train(type~., data = train, method = "svmRadial", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
+svm.model <- train(Label~., data = train, method = "svmRadial", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
 
 svm.predict <- predict(svm.model, test)
 modelpredict <- confusionMatrix(svm.predict, as.factor(test$Label), mode = "prec_recall")
