@@ -9,6 +9,8 @@ You have to use 8 more hours to do it again.
 You can copy 2_1_Default_Code.R and 2_2_Default_Environment.RData. To start training your models.
 Copy and Rename the two files based on your portion of the project.
 
+SEPERATING THE ENVIRONMENT IS IMPORTANT, Github has a 100MB limit on files, without using other features.
+
 1_1_Feature_Selection_Code.R
 
     This is the code I used to find the 20 most important features.
