@@ -62,18 +62,18 @@ datasetfeatures10 <- dataset_backup[importantfeatures10]
 # Above this is the default configuration. If you load the environment file you will not have to run these again.
 # Below this point is SVM
 
-trainIndex <- createDataPartition(datasetfeatures10$Label, p = 0.70, list = FALSE)
-train <- datasetfeatures10[ trainIndex, ]
-test <- datasetfeatures10[-trainIndex, ]
+#trainIndex <- createDataPartition(datasetfeatures10$Label, p = 0.70, list = FALSE)
+#train <- datasetfeatures10[ trainIndex, ]
+#test <- datasetfeatures10[-trainIndex, ]
 
-trainCtrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
+#trainCtrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
 
 #svm.model <- train(Label~., data = train, method = "svmRadial", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
 
-svm.model$times
-svm.model$results
+#svm.model$times
+#svm.model$results
 
-svm.predict <- predict(svm.model, test)
-modelpredict <- confusionMatrix(svm.predict, as.factor(test$Label), mode = "prec_recall")
+#svm.predict <- predict(svm.model, test)
+#modelpredict <- confusionMatrix(svm.predict, as.factor(test$Label), mode = "prec_recall")
 
-modelpredict
+#modelpredict
