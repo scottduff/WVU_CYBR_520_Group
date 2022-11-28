@@ -60,26 +60,27 @@ References
 
 only 20 most important variables shown (out of 68)
 
-                       Overall
-Bwd.Packet.Length.Mean  0.3640
-Avg.Bwd.Segment.Size    0.3640
-Bwd.Packet.Length.Max   0.3333
-Bwd.Packet.Length.Std   0.3320
-Destination.Port        0.2599
-URG.Flag.Count          0.2145
-Packet.Length.Mean      0.2064
-Average.Packet.Size     0.2056
-Packet.Length.Std       0.1969
-Min.Packet.Length       0.1827
-Max.Packet.Length       0.1717
-Packet.Length.Variance  0.1665
-min_seg_size_forward    0.1659
-Flow.IAT.Max            0.1505
-Flow.Duration           0.1460
-Bwd.Packet.Length.Min   0.1337
-Fwd.IAT.Std             0.1289
-Avg.Fwd.Segment.Size    0.1274
-Fwd.Packet.Length.Mean  0.1274
-Flow.IAT.Std            0.1254
+Overall
+
+    Bwd.Packet.Length.Mean  0.3640
+    Avg.Bwd.Segment.Size    0.3640
+    Bwd.Packet.Length.Max   0.3333
+    Bwd.Packet.Length.Std   0.3320
+    Destination.Port        0.2599
+    URG.Flag.Count          0.2145
+    Packet.Length.Mean      0.2064
+    Average.Packet.Size     0.2056
+    Packet.Length.Std       0.1969
+    Min.Packet.Length       0.1827
+    Max.Packet.Length       0.1717
+    Packet.Length.Variance  0.1665
+    min_seg_size_forward    0.1659
+    Flow.IAT.Max            0.1505
+    Flow.Duration           0.1460
+    Bwd.Packet.Length.Min   0.1337
+    Fwd.IAT.Std             0.1289
+    Avg.Fwd.Segment.Size    0.1274
+    Fwd.Packet.Length.Mean  0.1274
+    Flow.IAT.Std            0.1254
 
 
