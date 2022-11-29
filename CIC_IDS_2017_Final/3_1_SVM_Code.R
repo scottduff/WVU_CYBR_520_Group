@@ -3,20 +3,9 @@ library(e1071)
 
 set.seed(4242)
 
+# Configure Directory Path on a Per User Basis
 dataset <- read.csv("C:\\Users\\duffa\\OneDrive\\Documents\\GitHub\\WVU_CYBR_520_Group_1\\CIC_IDS_2017_Final\\MachineLearningCVE\\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv", sep = ",")
 dataset$x <- NULL
-
-# Remove columns that total zero (0), function.
-only_zeros <- function(x) {
-  if(class(x) %in% c("integer", "numeric")) {
-    all(x == 0, na.rm = TRUE) 
-  } else { 
-    FALSE
-  }
-}
-
-# Apply the only_Zero function to the dataset.
-dataset_nozero <- dataset[ , !sapply(dataset, only_zeros)]
 
 # Configure dataset with features selected in 1_0_Feature Selection_Code.R
 importantfeatures10 <- c("Bwd.Packet.Length.Mean", "Avg.Bwd.Segment.Size", 
@@ -25,8 +14,8 @@ importantfeatures10 <- c("Bwd.Packet.Length.Mean", "Avg.Bwd.Segment.Size",
                          "Packet.Length.Mean", "Average.Packet.Size", 
                          "Packet.Length.Std", "Min.Packet.Length", "Label")
 
-# Dataset with selected features and features with columns with totals of zero (0).
-datasetfeatures10 <- dataset_nozero[importantfeatures10]
+# Dataset with selected features.
+datasetfeatures10 <- dataset[importantfeatures10]
 
 #SVM Setup and Model Creation
 trainIndex <- createDataPartition(datasetfeatures10$Label, p = 0.70, list = FALSE)
