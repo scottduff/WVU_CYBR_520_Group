@@ -1,12 +1,15 @@
+install.packages('caret')
+install.packages('rpart.plot')
 library(caret)
 library(e1071)
+library(rpart)
+library(rpart.plot)
+set.seed(4242) 
 
-set.seed(4242)
-
-dataset <- read.csv("C:\\Users\\duffa\\OneDrive\\Documents\\GitHub\\WVU_CYBR_520_Group_1\\CIC_IDS_2017_Final\\MachineLearningCVE\\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv", sep = ",")
+Dataset <- read.csv("C:\\Users\\lsine\\OneDrive\\Desktop\\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv", sep = ",")
 dataset$x <- NULL
 
-# Remove columns that total zero (0), function.
+# Remove columns that total zero (0), function
 only_zeros <- function(x) {
   if(class(x) %in% c("integer", "numeric")) {
     all(x == 0, na.rm = TRUE) 
@@ -27,4 +30,20 @@ importantfeatures10 <- c("Bwd.Packet.Length.Mean", "Avg.Bwd.Segment.Size",
 
 # Dataset with selected features and features with columns with totals of zero (0).
 datasetfeatures10 <- dataset_nozero[importantfeatures10]
+datasetfeatures10 <- dataset[importantfeatures10]
+
+trainIndex <- createDataPartition(datasetfeatures10$Label, p=0.70, list = FALSE)
+
+Train <- datasetfeatures10[ trainIndex, ]
+Test <- datasetfeatures10[-trainIndex, ]
+
+treemodel <- rpart(datasetfeatures10, data = Train)
+treeplot <- rpart.plot(treemodel)
+treemodel$variable.importance
+
+Prediction <- predict(treemodel, Test, type = 'prob')
+Prediction
+Confmatrix <- table(Test$type, Prediction)
+
+treemodel <- train(Label~., data = train, method = "RF", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
 
