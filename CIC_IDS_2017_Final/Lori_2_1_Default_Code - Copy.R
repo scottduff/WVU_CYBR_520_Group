@@ -31,19 +31,15 @@ importantfeatures10 <- c("Bwd.Packet.Length.Mean", "Avg.Bwd.Segment.Size",
 # Dataset with selected features and features with columns with totals of zero (0).
 datasetfeatures10 <- dataset_nozero[importantfeatures10]
 datasetfeatures10 <- dataset[importantfeatures10]
+trainCtrl <- trainControl(method = "cv", number=10)
 
 trainIndex <- createDataPartition(datasetfeatures10$Label, p=0.70, list = FALSE)
 
 Train <- datasetfeatures10[ trainIndex, ]
 Test <- datasetfeatures10[-trainIndex, ]
 
-treemodel <- rpart(datasetfeatures10, data = Train)
-treeplot <- rpart.plot(treemodel)
-treemodel$variable.importance
 
-Prediction <- predict(treemodel, Test, type = 'prob')
-Prediction
-Confmatrix <- table(Test$type, Prediction)
+rf.model <- train(Label~., data = train, method="rf", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
 
-treemodel <- train(Label~., data = train, method = "RF", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
+
 
