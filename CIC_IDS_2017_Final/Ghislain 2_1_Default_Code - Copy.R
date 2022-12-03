@@ -44,3 +44,7 @@ bagFDA.model <- train(Label~., data = train, method="bagFDA", tuneLength = 10, t
 set.seed(4242)
 trainctrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
 bagFDA.model <- train(Label~., data = train, method="bagFDA", tuneLength = 10, trControl = trainctrl , metric="Accuracy")
+trainIndex <- createDataPartition(datasetfeatures10$Label, p = 0.70, list = FALSE)
+train <- datasetfeatures10[ trainIndex, ]
+test <- datasetfeatures10[-trainIndex, ]
+bagFDA.model <- train(Label~., data = train, method="bagFDA", tuneLength = 10, trControl = trainctrl , metric="Accuracy")
