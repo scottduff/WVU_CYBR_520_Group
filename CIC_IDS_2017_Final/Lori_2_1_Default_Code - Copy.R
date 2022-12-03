@@ -31,15 +31,16 @@ importantfeatures10 <- c("Bwd.Packet.Length.Mean", "Avg.Bwd.Segment.Size",
 # Dataset with selected features and features with columns with totals of zero (0).
 datasetfeatures10 <- dataset_nozero[importantfeatures10]
 datasetfeatures10 <- dataset[importantfeatures10]
-trainCtrl <- trainControl(method = "cv", number=10)
 
-trainIndex <- createDataPartition(datasetfeatures10$Label, p=0.70, list = FALSE)
+trainIndex <- createDataPartition(datasetfeatures10$Label, p = 0.70, list = FALSE)
+train <- datasetfeatures10[ trainIndex, ]
+test <- datasetfeatures10[-trainIndex, ]
 
-Train <- datasetfeatures10[ trainIndex, ]
-Test <- datasetfeatures10[-trainIndex, ]
+trainCtrl <- trainControl(method = "cv", number = 10, verboseIter = TRUE)
 
 
 rf.model <- train(Label~., data = train, method="rf", tuneLength = 10, trControl = trainCtrl, metric = "Accuracy")
-
+rf.model$times
+rf.model$results
 
 
