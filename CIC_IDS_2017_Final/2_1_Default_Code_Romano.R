@@ -3,7 +3,7 @@ library(e1071)
 
 set.seed(4242)
 
-dataset <- read.csv("C:\\Users\\duffa\\OneDrive\\Documents\\GitHub\\WVU_CYBR_520_Group_1\\CIC_IDS_2017_Final\\MachineLearningCVE\\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv", sep = ",")
+dataset <- read.csv("C:\\Users\\Sam\\Documents\\GitHub\\WVU_CYBR_520_Group_1\\CIC_IDS_2017_Final\\Friday-WorkingHours-Afternoon-DDos.pcap_ISCX.csv", sep = ",")
 dataset$x <- NULL
 
 # Remove columns that total zero (0), function.
