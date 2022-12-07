@@ -104,11 +104,11 @@ boxplot(svm.modelpredict$byClass[6], rf.modelpredict$byClass[6], gbm.modelpredic
         border  = c("blue", "red", "green", "pink", "orange"), ylab = "Recall", main = "Recall Comparison")
 
 boxplot(svm.modelpredict$byClass[7], rf.modelpredict$byClass[7], gbm.modelpredict$byClass[7], bagFDA.modelpredict$byClass[7], nb.modelpredict$byClass[7], col = c("blue", "red", "green", "pink", "orange"), 
-        names = c("svmRadial7", "rf7", "gbm7", "bagFDA7", "nb7"), 
+        names = c("svmRadial", "rf", "gbm", "bagFDA", "nb"), 
         border  = c("blue", "red", "green", "pink", "orange"), ylab = "F1 Score", main = "F1 Score Comparison")
 
 boxplot(svm.model$results$Accuracy, rf.model$results$Accuracy, gbm.model$results$Accuracy, bagFDA.model$results$Accuracy, nb.model$results$Accuracy, col = c("blue", "red", "green", "pink", "orange"), 
-        names = c("svmRadial7", "rf7", "gbm7", "bagFDA7", "nb7"), 
+        names = c("svmRadial", "rf", "gbm", "bagFDA", "nb"), 
         border  = c("blue", "red", "green", "pink", "orange"), ylab = "Accuracy", main = "Accuracy Comparison")
 
 boxplot(svm.model$times$everything[3], rf.model$times$everything[3], gbm.model$times$everything[3], bagFDA.model$times$everything[3], nb.model$times$everything[3], col = c("blue", "red", "green", "pink", "orange"), 
