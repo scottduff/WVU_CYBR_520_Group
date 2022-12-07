@@ -48,3 +48,6 @@ trainIndex <- createDataPartition(datasetfeatures10$Label, p = 0.70, list = FALS
 train <- datasetfeatures10[ trainIndex, ]
 test <- datasetfeatures10[-trainIndex, ]
 bagFDA.model <- train(Label~., data = train, method="bagFDA", tuneLength = 10, trControl = trainctrl , metric="Accuracy")
+bagFDA.predict <- predict(bagFDA.model, test)
+modelpredict <- confusionMatrix(bagFDA.predict, as.factor(test$Label), mode = "prec_recall")
+modelpredict
