@@ -111,7 +111,9 @@ boxplot(svm.model$results$Accuracy, rf.model$results$Accuracy, gbm.model$results
         names = c("svmRadial7", "rf7", "gbm7", "bagFDA7", "nb7"), 
         border  = c("blue", "red", "green", "pink", "orange"), ylab = "Accuracy", main = "Accuracy Comparison")
 
-
+boxplot(svm.model$times$everything[3], rf.model$times$everything[3], gbm.model$times$everything[3], bagFDA.model$times$everything[3], nb.model$times$everything[3], col = c("blue", "red", "green", "pink", "orange"), 
+        names = c("svmRadial", "rf", "gbm", "bagFDA", "nb"), 
+        border  = c("blue", "red", "green", "pink", "orange"), ylab = "Elapsed Time", main = "Elapsed Time Comparison")
 
 
 
